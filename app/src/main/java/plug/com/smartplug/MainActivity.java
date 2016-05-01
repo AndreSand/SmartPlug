@@ -28,8 +28,17 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isChecked){
                     switchStatus.setText("Switch is currently ON");
+
+                    MQTTSample updEmple = new MQTTSample();
+                    //updEmple.main();
+
+
+
                 }else{
                     switchStatus.setText("Switch is currently OFF");
+
+
+
                 }
 
             }
