@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView switchStatus;
     private Switch mySwitch;
+    private MQTTSample updEmple = new MQTTSample();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isChecked){
                     switchStatus.setText("Switch is currently ON");
-
-                    MQTTSample updEmple = new MQTTSample();
-                    //updEmple.main();
-
-
+                    updEmple.sendMessage("ON");
 
                 }else{
                     switchStatus.setText("Switch is currently OFF");
-
-
-
+                    updEmple.sendMessage("OFF");
                 }
 
             }
