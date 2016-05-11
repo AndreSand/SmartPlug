@@ -9,7 +9,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView switchStatus;
     private Switch mySwitch;
-    private MQTTSample updEmple = new MQTTSample();
+    private MQTTSample myMQTT = new MQTTSample();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         switchStatus = (TextView) findViewById(R.id.tvSwitch);
         mySwitch = (Switch) findViewById(R.id.switch1);
+        //mySwitch.setChecked(true);
+        //How do I know the state of the device on/off?
 
-        //set the switch to ON
-        mySwitch.setChecked(true);
         //attach a listener to check for changes in state
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -27,23 +27,23 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
 
-                if(isChecked){
+                if (isChecked) {
                     switchStatus.setText("Switch is currently ON");
-                    updEmple.sendMessage("ON");
+                    myMQTT.sendMessage("{\"command\":\"On\"}");
 
-                }else{
+
+                } else {
                     switchStatus.setText("Switch is currently OFF");
-                    updEmple.sendMessage("OFF");
+                    myMQTT.sendMessage("{\"command\":\"Off\"}");
                 }
 
             }
         });
 
         //check the current state before we display the screen
-        if(mySwitch.isChecked()){
+        if (mySwitch.isChecked()) {
             switchStatus.setText("Switch is currently ON");
-        }
-        else {
+        } else {
             switchStatus.setText("Switch is currently OFF");
         }
     }
