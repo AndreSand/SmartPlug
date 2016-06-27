@@ -20,11 +20,72 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/tvSwitch"
         android:layout_marginTop="22dp"
         android:layout_below="@+id/switch1"
+        android:layout_alignParentStart="true"
+        android:hint="status: on/off" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Voltage : "
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/tvVoltage"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="v"
+        android:id="@+id/tvVoltage"
+        android:layout_below="@+id/tvSwitch"
+        android:layout_marginTop="34dp"
+        android:layout_alignEnd="@+id/tvSwitch"
+        android:layout_toEndOf="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Current:"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Power:"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="i"
+        android:id="@+id/tvCurrent"
+        android:layout_above="@+id/textView3"
+        android:layout_alignEnd="@+id/tvVoltage"
+        android:layout_alignStart="@+id/tvVoltage" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="p"
+        android:id="@+id/tvPower"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignEnd="@+id/tvCurrent"
+        android:layout_alignStart="@+id/tvCurrent" />
 </RelativeLayout>

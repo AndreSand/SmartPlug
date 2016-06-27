@@ -5,7 +5,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 /**
  * MQTT documentation: https://www.cloudmqtt.com/docs-java.html
- * <p/>
+ * TODO implement mBinder http://dalelane.co.uk/blog/?p=1599
  * Created by andres on 5/1/16.
  */
 
@@ -21,8 +21,8 @@ public class MQTTSample {
 
         String content = s;
         int qos = 1;
-        //String broker = "tcp://m12.cloudmqtt.com:12923";  //My endpoint
-        String broker = "tcp://m12.cloudmqtt.com:16186"; //Habid
+        String broker = "tcp://m12.cloudmqtt.com:12923";  //My endpoint
+        //String broker = "tcp://m12.cloudmqtt.com:16186"; //Habid
 
         //MQTT client id to use for the device. "" will generate a client id automatically
         String clientId = "ClientId";
@@ -48,10 +48,12 @@ public class MQTTSample {
 
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
-            //connOpts.setUserName("tgpgjryu");
-            //connOpts.setPassword(new char[]{'I', 'W', 'J', 'u', 'k', '7', 'y', 'z', 'R', 'q', '0', '0'});
-            connOpts.setUserName("iajmzgae");//Habid
-            connOpts.setPassword(new char[]{'b', 'N', 'l', '5', 'x', 'z', 'a', 'e', '8', 'm', 'o', 'x'}); //Habid
+            connOpts.setUserName("tgpgjryu");
+            connOpts.setPassword("IWJuk7yzRq00".toCharArray());
+
+            //Habid values
+            //connOpts.setUserName("iajmzgae");//Habid
+            //connOpts.setPassword(new char[]{'b', 'N', 'l', '5', 'x', 'z', 'a', 'e', '8', 'm', 'o', 'x'}); //Habid
             mqttClient.connect(connOpts);
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);

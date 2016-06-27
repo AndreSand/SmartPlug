@@ -1,5 +1,11 @@
 #https://github.com/github/gitignore/blob/master/Android.gitignore
-/build
+.gradle
+/local.properties
+ /.idea/workspace.xml
+ /.idea/libraries
+ .DS_Store
+ /build
+ /captures
 
 # Built application files
 *.apk
