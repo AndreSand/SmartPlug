@@ -22,7 +22,7 @@ public class MQTTSample {
         String content = s;
         int qos = 1;
         String broker = "tcp://m12.cloudmqtt.com:12923";  //My endpoint
-        //String broker = "tcp://m12.cloudmqtt.com:16186"; //Habid
+        //String broker = "tcp://m12.cloudmqtt.com:16186"; //Habid's
 
         //MQTT client id to use for the device. "" will generate a client id automatically
         String clientId = "ClientId";
@@ -46,14 +46,24 @@ public class MQTTSample {
                 }
             });
 
+            //
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
+
+            //*****************************************
+            //******* Below My values **************
+            //*****************************************
             connOpts.setUserName("tgpgjryu");
             connOpts.setPassword("IWJuk7yzRq00".toCharArray());
 
-            //Habid values
-            //connOpts.setUserName("iajmzgae");//Habid
-            //connOpts.setPassword(new char[]{'b', 'N', 'l', '5', 'x', 'z', 'a', 'e', '8', 'm', 'o', 'x'}); //Habid
+
+            //*****************************************
+            //******* Below Habid's values **************
+            //*****************************************
+            //connOpts.setUserName("iajmzgae");
+            //connOpts.setPassword("bNl5xzae8mox".toCharArray());
+
+            //
             mqttClient.connect(connOpts);
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);

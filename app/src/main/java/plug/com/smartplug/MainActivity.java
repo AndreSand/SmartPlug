@@ -18,6 +18,7 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONObject;
 
 /*
 websocket Console -> https://api.cloudmqtt.com/sso/cloudmqtt/websocket
@@ -101,8 +102,8 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
                     Toast.makeText(MainActivity.this, "Connection successful", Toast.LENGTH_SHORT).show();
                     //Subscribing to a topic door/status on broker.hivemq.com
                     client.setCallback(MainActivity.this);
-                    //subscribing to topic voltage:
-                    final String topic = "voltage";
+                    //subscribing to topic SmartPlug:
+                    final String topic = "SmartPlug";
                     int qos = 1;
                     try {
                         IMqttToken subToken = client.subscribe(topic, qos);
@@ -152,20 +153,18 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
-
 //Message will be below, we will need to parse the Json response for each field.
 // {"voltage":"<>","current":"<>","power":"<>"}
+        //{"voltage":"<float>"}
+        String JsonResponse = message.toString();
+        JSONObject obj = new JSONObject(JsonResponse);
 
-        /*
-        * To test ,publish  "open"/"close" at topic you subscibed app to in above .
-        * */
-//        Log.d("door",message.toString());
-//
+        System.out.println(obj.getString("voltage")); //John
+
         Toast.makeText(MainActivity.this, "Topic: " + topic + "\nMessage: " + message, Toast.LENGTH_LONG).show();
-        tvVoltage.setText(message.toString());
-        tvCurrent.setText(message.toString());
-        tvPower.setText(message.toString());
-
+        tvVoltage.setText(obj.getString("voltage"));
+        tvCurrent.setText(obj.getString("voltage"));
+        tvPower.setText(obj.getString("voltage"));
         //restartActivity();
 
     }
@@ -175,10 +174,13 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 
     }
 
+    //TODO: (Issue) After some time the app sotps the subscription and is not able to receive any message.
+    //Maybe try to find a way to reconnect every X mins....
     public void restartActivity() {
         Intent mIntent = getIntent();
         finish();
         startActivity(mIntent);
+//        Log.d("door",message.toString());
     }
 
 
