@@ -80,16 +80,35 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         //MQTTConnect options : setting version to MQTT 3.1.1
         MqttConnectOptions options = new MqttConnectOptions();
         options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
-        options.setUserName("tgpgjryu");
-        options.setPassword("IWJuk7yzRq00".toCharArray());
+
+        //http://stackoverflow.com/questions/36080656/mqtt-messages-persists-after-unsubscription-and-is-recieved-on-subscribing-again
+        //https://gist.github.com/m2mIO-gister/5275324
+        options.setCleanSession(true);
+        options.setKeepAliveInterval(30);
+
+        //My values
+        //options.setUserName("tgpgjryu");
+        //options.setPassword("IWJuk7yzRq00".toCharArray());
+
+        //Habids values
+        options.setUserName("iajmzgae");
+        options.setPassword("bNl5xzae8mox".toCharArray());
+
 
         //Below code binds MainActivity to Paho Android Service via provided MqttAndroidClient
         // client interface
         //Todo : Check why it wasn't connecting to test.mosquitto.org. Isn't that a public broker.
         //Todo : .check why client.subscribe was throwing NullPointerException  even on doing subToken.waitForCompletion()  for Async                  connection estabishment. and why it worked on subscribing from within client.connect’s onSuccess(). SO
         String clientId = MqttClient.generateClientId();
+
+        //My values
+        //final MqttAndroidClient client =
+        // new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
+        //       clientId);
+
+        //Habids values
         final MqttAndroidClient client =
-                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
+                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:16186",
                         clientId);
 
         try {
@@ -103,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
                     //Subscribing to a topic door/status on broker.hivemq.com
                     client.setCallback(MainActivity.this);
                     //subscribing to topic SmartPlug:
-                    final String topic = "SmartPlug";
+                    final String topic = "SmartPlugData";
                     int qos = 1;
                     try {
                         IMqttToken subToken = client.subscribe(topic, qos);

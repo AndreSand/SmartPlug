@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/classes-7d6f98a715ea24c37668c250aca304edcfa191eb.jar" />
-    </item>
-    <item
         jar="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
         <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/classes-c16b7b376d81ef5ac31a2cd863b28c1485eb3591.jar" />
+    </item>
+    <item
+        jar="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/classes-7d6f98a715ea24c37668c250aca304edcfa191eb.jar" />
     </item>
     <item
         jar="/Users/andres/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.android.service/1.0.2/2d956522c556caeb35148445ecd059ebe67331f6/org.eclipse.paho.android.service-1.0.2.jar"
@@ -23,18 +23,18 @@
         <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/org.eclipse.paho.android.service-1.0.2-2b532a9c2487162857bb3d5be0c3d67a909677ca.jar" />
     </item>
     <item
-        jar="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/internal_impl-23.3.0-a8e23af71b25b84e0c5e98c47f75eff6f0cc70d7.jar" />
-    </item>
-    <item
         jar="/Users/andres/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.client.mqttv3/1.0.2/11752d3f24d1a9deda4533a7ca18d8496417ceeb/org.eclipse.paho.client.mqttv3-1.0.2.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="11752d3f24d1a9deda4533a7ca18d8496417ceeb">
         <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/org.eclipse.paho.client.mqttv3-1.0.2-975f61fcf215667f0d43af82faa0de412ba97d75.jar" />
+    </item>
+    <item
+        jar="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/internal_impl-23.3.0-a8e23af71b25b84e0c5e98c47f75eff6f0cc70d7.jar" />
     </item>
     <item
         jar="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
@@ -44,18 +44,18 @@
         <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/classes-071cba3f68fe3d76c65bdce05add14a1e4b7de84.jar" />
     </item>
     <item
-        jar="/Users/andres/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/support-annotations-23.3.0-bc47b920646505037f2339650088bf244956b1cf.jar" />
-    </item>
-    <item
         jar="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
         <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/classes-d7c807d056407d1ab978d439eca217a3519c3c5d.jar" />
+    </item>
+    <item
+        jar="/Users/andres/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/andres/AndroidStudioProjects/SmartPlug/app/build/intermediates/pre-dexed/debug/support-annotations-23.3.0-bc47b920646505037f2339650088bf244956b1cf.jar" />
     </item>
 
 </items>
