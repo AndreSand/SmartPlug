@@ -73,9 +73,11 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
             switchStatus.setText("Switch is currently OFF");
         }
 
-        //*****************************************
-        //Below implementation odf Subscriber
-        //*****************************************
+        /*****************************************
+        *Below code Subscribes to Topic SmartPlugData
+        1. Gets values of Voltage, Power and Current
+        2. Updates UI with the corresponding data
+        *****************************************/
 
         //MQTTConnect options : setting version to MQTT 3.1.1
         MqttConnectOptions options = new MqttConnectOptions();
@@ -87,8 +89,8 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         options.setKeepAliveInterval(30);
 
         //My values
-        //options.setUserName("tgpgjryu");
-        //options.setPassword("IWJuk7yzRq00".toCharArray());
+//        options.setUserName("tgpgjryu");
+//        options.setPassword("IWJuk7yzRq00".toCharArray());
 
         //Habids values
         options.setUserName("iajmzgae");
@@ -102,9 +104,9 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         String clientId = MqttClient.generateClientId();
 
         //My values
-        //final MqttAndroidClient client =
-        // new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
-        //       clientId);
+//        final MqttAndroidClient client =
+//         new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
+//               clientId);
 
         //Habids values
         final MqttAndroidClient client =
@@ -178,12 +180,12 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         String JsonResponse = message.toString();
         JSONObject obj = new JSONObject(JsonResponse);
 
-        System.out.println(obj.getString("voltage")); //John
+        System.out.println(obj.getString("voltage"));
 
         Toast.makeText(MainActivity.this, "Topic: " + topic + "\nMessage: " + message, Toast.LENGTH_LONG).show();
         tvVoltage.setText(obj.getString("voltage"));
-        tvCurrent.setText(obj.getString("voltage"));
-        tvPower.setText(obj.getString("voltage"));
+        tvCurrent.setText(obj.getString("current"));
+        tvPower.setText(obj.getString("power"));
         //restartActivity();
 
     }
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 
     }
 
-    //TODO: (Issue) After some time the app sotps the subscription and is not able to receive any message.
+    //TODO: (Issue) After some time the app stops the subscription and is not able to receive any message.
     //Maybe try to find a way to reconnect every X mins....
     public void restartActivity() {
         Intent mIntent = getIntent();
