@@ -65,19 +65,19 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 
             }
         });
-
-        //check the current state before we display the screen
-        if (mySwitch.isChecked()) {
-            switchStatus.setText("Switch is currently ON");
-        } else {
-            switchStatus.setText("Switch is currently OFF");
-        }
+//
+//        //check the current state before we display the screen
+//        if (mySwitch.isChecked()) {
+//            switchStatus.setText("Switch is currently ON");
+//        } else {
+//            switchStatus.setText("Switch is currently OFF");
+//        }
 
         /*****************************************
-        *Below code Subscribes to Topic SmartPlugData
-        1. Gets values of Voltage, Power and Current
-        2. Updates UI with the corresponding data
-        *****************************************/
+         Below code Subscribes to Topic SmartPlugData
+         1. Gets values of Voltage, Power and Current
+         2. Updates UI with the corresponding data
+         *****************************************/
 
         //MQTTConnect options : setting version to MQTT 3.1.1
         MqttConnectOptions options = new MqttConnectOptions();
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         //http://stackoverflow.com/questions/36080656/mqtt-messages-persists-after-unsubscription-and-is-recieved-on-subscribing-again
         //https://gist.github.com/m2mIO-gister/5275324
         options.setCleanSession(true);
-        options.setKeepAliveInterval(30);
+        options.setKeepAliveInterval(0);
 
         //My values
 //        options.setUserName("tgpgjryu");
@@ -99,14 +99,12 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 
         //Below code binds MainActivity to Paho Android Service via provided MqttAndroidClient
         // client interface
-        //Todo : Check why it wasn't connecting to test.mosquitto.org. Isn't that a public broker.
-        //Todo : .check why client.subscribe was throwing NullPointerException  even on doing subToken.waitForCompletion()  for Async                  connection estabishment. and why it worked on subscribing from within client.connect’s onSuccess(). SO
         String clientId = MqttClient.generateClientId();
 
         //My values
 //        final MqttAndroidClient client =
-//         new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
-//               clientId);
+//                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
+//                        clientId);
 
         //Habids values
         final MqttAndroidClient client =
@@ -121,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
                     // We are connected
                     Log.d(TAG, "onSuccess");
                     Toast.makeText(MainActivity.this, "Connection successful", Toast.LENGTH_SHORT).show();
-                    //Subscribing to a topic door/status on broker.hivemq.com
                     client.setCallback(MainActivity.this);
                     //subscribing to topic SmartPlug:
                     final String topic = "SmartPlugData";
@@ -175,17 +172,29 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
 //Message will be below, we will need to parse the Json response for each field.
-// {"voltage":"<>","current":"<>","power":"<>"}
+// {"device_status":"On","voltage":"22","current":"1.3","power":"3"}
         //{"voltage":"<float>"}
         String JsonResponse = message.toString();
         JSONObject obj = new JSONObject(JsonResponse);
 
         System.out.println(obj.getString("voltage"));
 
-        Toast.makeText(MainActivity.this, "Topic: " + topic + "\nMessage: " + message, Toast.LENGTH_LONG).show();
+       // Toast.makeText(MainActivity.this, "Topic: " + topic + "\nMessage: " + message, Toast.LENGTH_LONG).show();
         tvVoltage.setText(obj.getString("voltage"));
         tvCurrent.setText(obj.getString("current"));
         tvPower.setText(obj.getString("power"));
+
+        //Update UI depending on device_status On/Off
+        String switchStatusUpdate = obj.getString("device_status");
+        if (switchStatusUpdate.equals("On")) {
+            mySwitch.setChecked(true);
+            Toast.makeText(MainActivity.this, "On recieved", Toast.LENGTH_SHORT).show();
+        } else {
+
+            mySwitch.setChecked(false);
+        }
+        switchStatus.setText(switchStatusUpdate);
+
         //restartActivity();
 
     }
