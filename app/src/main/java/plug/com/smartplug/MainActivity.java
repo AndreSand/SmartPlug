@@ -23,7 +23,6 @@ import org.json.JSONObject;
 /*
 websocket Console -> https://api.cloudmqtt.com/sso/cloudmqtt/websocket
 tutorial MQTT subscriber -> https://github.com/charany1/MQTT-Subscriber
-JSON reponse {"voltage":"<>","current":"<>","power":"<>"}
  */
 
 public class MainActivity extends AppCompatActivity implements MqttCallback {
@@ -88,28 +87,23 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         options.setCleanSession(true);
         options.setKeepAliveInterval(0);
 
-        //My values
-//        options.setUserName("tgpgjryu");
-//        options.setPassword("IWJuk7yzRq00".toCharArray());
-
-        //Habids values
-        options.setUserName("iajmzgae");
-        options.setPassword("bNl5xzae8mox".toCharArray());
-
-
         //Below code binds MainActivity to Paho Android Service via provided MqttAndroidClient
         // client interface
         String clientId = MqttClient.generateClientId();
 
         //My values
-//        final MqttAndroidClient client =
-//                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
-//                        clientId);
-
-        //Habids values
+        options.setUserName("tgpgjryu");
+        options.setPassword("IWJuk7yzRq00".toCharArray());
         final MqttAndroidClient client =
-                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:16186",
+                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
                         clientId);
+
+        //Habid's values
+//        options.setUserName("iajmzgae");
+//        options.setPassword("bNl5xzae8mox".toCharArray());
+//        final MqttAndroidClient client =
+//                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:16186",
+//                        clientId);
 
         try {
             IMqttToken token = client.connect(options);
@@ -130,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
                             public void onSuccess(IMqttToken asyncActionToken) {
                                 // successfully subscribed
                                 Toast.makeText(MainActivity.this, "Successfully subscribed to: " + topic, Toast.LENGTH_SHORT).show();
-
                             }
 
                             @Override
@@ -171,24 +164,23 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
-//Message will be below, we will need to parse the Json response for each field.
-// {"device_status":"On","voltage":"22","current":"1.3","power":"3"}
-        //{"voltage":"<float>"}
+        //Message will be below, we will need to parse the Json response for each field.
+        // {"deviceStatus":"On","voltage":"22","current":"1.3","power":"3"}
         String JsonResponse = message.toString();
         JSONObject obj = new JSONObject(JsonResponse);
 
         System.out.println(obj.getString("voltage"));
 
-       // Toast.makeText(MainActivity.this, "Topic: " + topic + "\nMessage: " + message, Toast.LENGTH_LONG).show();
-        tvVoltage.setText(obj.getString("voltage"));
-        tvCurrent.setText(obj.getString("current"));
-        tvPower.setText(obj.getString("power"));
+        Toast.makeText(MainActivity.this, "Topic: " + topic + "\nMessage: " + message, Toast.LENGTH_LONG).show();
+        tvVoltage.setText(obj.getString("voltage") + " V");
+        tvCurrent.setText(obj.getString("current") + " A");
+        tvPower.setText(obj.getString("power") + " W");
 
         //Update UI depending on device_status On/Off
-        String switchStatusUpdate = obj.getString("device_status");
+        String switchStatusUpdate = obj.getString("deviceStatus");
         if (switchStatusUpdate.equals("On")) {
             mySwitch.setChecked(true);
-            Toast.makeText(MainActivity.this, "On recieved", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "On received", Toast.LENGTH_SHORT).show();
         } else {
 
             mySwitch.setChecked(false);
@@ -210,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         Intent mIntent = getIntent();
         finish();
         startActivity(mIntent);
-//        Log.d("door",message.toString());
+        //Log.d("door",message.toString());
     }
 
 
