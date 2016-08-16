@@ -26,6 +26,12 @@ SmartPlug Project
  `{"deviceStatus":"On","voltage":"22","current":"1.3","power":"3"}`
 3. App parses message and displays values in the app
 
+| Field Name        | Type          | Description         |
+| -------------     |:-------------:| -----------:        |
+| deviceStatus      | String        |  appliance On/Off   |
+| voltage           | String        |  appliance voltage  |
+| current           | String        |  appliance current  |
+| power             | String        |  appliance power    |
 
 ###Validate
 Using Chrome plugin [MQTTLens](https://chrome.google.com/webstore/detail/mqttlens/hemojaaeigabkbcookmlgmdigohjobjm?hl=en) to test Android app functionality,
