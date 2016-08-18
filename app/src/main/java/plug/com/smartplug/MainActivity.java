@@ -92,18 +92,18 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         String clientId = MqttClient.generateClientId();
 
         //My values
-        options.setUserName("tgpgjryu");
-        options.setPassword("IWJuk7yzRq00".toCharArray());
-        final MqttAndroidClient client =
-                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
-                        clientId);
+//        options.setUserName("tgpgjryu");
+//        options.setPassword("IWJuk7yzRq00".toCharArray());
+//        final MqttAndroidClient client =
+//                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:12923",
+//                        clientId);
 
         //Habid's values
-//        options.setUserName("iajmzgae");
-//        options.setPassword("bNl5xzae8mox".toCharArray());
-//        final MqttAndroidClient client =
-//                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:16186",
-//                        clientId);
+        options.setUserName("iajmzgae");
+        options.setPassword("bNl5xzae8mox".toCharArray());
+        final MqttAndroidClient client =
+                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:16186",
+                        clientId);
 
         try {
             IMqttToken token = client.connect(options);
