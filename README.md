@@ -42,7 +42,9 @@ it lets you:
 
 
 ##Demo 
-<img src='SmartPlug1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='SmartPlug2.gif' title='Video Walkthrough 2' width='' alt='Video Walkthrough 2' />
+
+<img src='SmartPlug1.gif' title='Video Walkthrough 1' width='' alt='Video Walkthrough 1 ' />
 
 
 ###Run code
@@ -60,3 +62,8 @@ it lets you:
 GIF created with [LiceCap](http://www.cockos.com/licecap/)
 
 [README.md preview](http://tmpvar.com/markdown.html)
+
+[Toggle Button tutorial](http://www.android-examples.com/create-custom-toggle-button-in-android/)
+[off button](https://pixabay.com/en/switch-button-power-off-circle-29869/)
+[on button](https://pixabay.com/en/button-toggle-on-off-switch-green-29286/)
+

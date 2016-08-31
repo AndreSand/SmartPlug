@@ -4,10 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.CompoundButton;
+import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
     private static final String TAG = "MainActivity";
     private Switch mySwitch;
     private MQTTSample myMQTT = new MQTTSample();
+    ToggleButton togglebutton;
 
 
     @Override
@@ -38,32 +40,60 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         setContentView(R.layout.activity_main);
 
         switchStatus = (TextView) findViewById(R.id.tvSwitch);
-        mySwitch = (Switch) findViewById(R.id.switch1);
+        //mySwitch = (Switch) findViewById(R.id.switch1);
         tvVoltage = (TextView) findViewById(R.id.tvVoltage);
         tvPower = (TextView) findViewById(R.id.tvPower);
         tvCurrent = (TextView) findViewById(R.id.tvCurrent);
+        togglebutton = (ToggleButton) findViewById(R.id.toggleButton1);
+
         //mySwitch.setChecked(true);
         //How do I know the state of the device on/off?
 
-        //attach a listener to check for changes in state
-        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        /*
+        * Android Switch button
+        * attach a listener to check for changes in state
+         */
+//        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView,
+//                                         boolean isChecked) {
+//
+//                if (isChecked) {
+//                    switchStatus.setText("Switch is currently ON");
+//                    myMQTT.sendMessage("{\"command\":\"On\"}");
+//
+//
+//                } else {
+//                    switchStatus.setText("Switch is currently OFF");
+//                    myMQTT.sendMessage("{\"command\":\"Off\"}");
+//                }
+//
+//            }
+//        });
+
+
+        /*
+        * Android ToggleButton button
+        *
+         */
+        togglebutton = (ToggleButton) findViewById(R.id.toggleButton1);
+        togglebutton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
+            public void onClick(View v) {
 
-                if (isChecked) {
-                    switchStatus.setText("Switch is currently ON");
+                if (togglebutton.isChecked()) {
+                    Toast.makeText(MainActivity.this, "Toggle button is on", Toast.LENGTH_LONG).show();
                     myMQTT.sendMessage("{\"command\":\"On\"}");
-
-
                 } else {
-                    switchStatus.setText("Switch is currently OFF");
-                    myMQTT.sendMessage("{\"command\":\"Off\"}");
+                    Toast.makeText(MainActivity.this, "Toggle button is Off", Toast.LENGTH_LONG).show();
+                    myMQTT.sendMessage("{\"command\":\"On\"}");
                 }
-
             }
         });
+
+
 //
 //        //check the current state before we display the screen
 //        if (mySwitch.isChecked()) {
@@ -99,12 +129,18 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 //                        clientId);
 
         //Habid's values
-        options.setUserName("iajmzgae");
-        options.setPassword("bNl5xzae8mox".toCharArray());
-        final MqttAndroidClient client =
-                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:16186",
-                        clientId);
+//        options.setUserName("iajmzgae");
+//        options.setPassword("bNl5xzae8mox".toCharArray());
+//        final MqttAndroidClient client =
+//                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:16186",
+//                        clientId);
 
+        //Heroku Server
+        options.setUserName("cqskjfmy3");
+        options.setPassword("8H2lj4mekk0v".toCharArray());
+        final MqttAndroidClient client =
+                new MqttAndroidClient(this.getApplicationContext(), "tcp://m12.cloudmqtt.com:13087",
+                        clientId);
         try {
             IMqttToken token = client.connect(options);
             token.setActionCallback(new IMqttActionListener() {
@@ -179,15 +215,14 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         //Update UI depending on device_status On/Off
         String switchStatusUpdate = obj.getString("deviceStatus");
         if (switchStatusUpdate.equals("On")) {
-            mySwitch.setChecked(true);
+            togglebutton.setChecked(true);
+            //mySwitch.setChecked(true);
             //Toast.makeText(MainActivity.this, "On received", Toast.LENGTH_SHORT).show();
         } else {
-
-            mySwitch.setChecked(false);
+            togglebutton.setChecked(false);
+            //mySwitch.setChecked(false);
         }
-        switchStatus.setText(switchStatusUpdate);
-
-        //restartActivity();
+        switchStatus.setText("status: " + switchStatusUpdate);
 
     }
 

@@ -1,6 +1,11 @@
 package plug.com.smartplug;
 
-import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 /**
@@ -22,7 +27,8 @@ public class MQTTSample {
         String content = s;
         int qos = 1;
         //String broker = "tcp://m12.cloudmqtt.com:12923";  //My endpoint
-        String broker = "tcp://m12.cloudmqtt.com:16186"; //Habid's
+        //String broker = "tcp://m12.cloudmqtt.com:16186"; //Habid's
+        String broker = "tcp://m12.cloudmqtt.com:13087"; //Heroku Server
 
         //MQTT client id to use for the device. "" will generate a client id automatically
         String clientId = "ClientId";
@@ -53,15 +59,22 @@ public class MQTTSample {
             //*****************************************
             //******* Below My values **************
             //*****************************************
-            //connOpts.setUserName("tgpgjryu");
-            //connOpts.setPassword("IWJuk7yzRq00".toCharArray());
+            connOpts.setUserName("tgpgjryu");
+            connOpts.setPassword("IWJuk7yzRq00".toCharArray());
 
 
             //*****************************************
             //******* Below Habid's values **************
             //*****************************************
-            connOpts.setUserName("iajmzgae");
-            connOpts.setPassword("bNl5xzae8mox".toCharArray());
+            //connOpts.setUserName("iajmzgae");
+            //connOpts.setPassword("bNl5xzae8mox".toCharArray());
+
+            //*****************************************
+            //******* Heroku Server values **************
+            //*****************************************
+            //connOpts.setUserName("cqskjfmy3");
+            //connOpts.setPassword("8H2lj4mekk0v".toCharArray());
+
 
             //
             mqttClient.connect(connOpts);

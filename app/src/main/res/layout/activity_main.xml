@@ -10,82 +10,97 @@
     tools:context="plug.com.smartplug.MainActivity">
 
     <Switch
+        android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Device Status"
-        android:id="@+id/switch1"
-        android:checked="false"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="20dp"
+        android:checked="false"
+        android:text="Device Status"
+        android:visibility="gone" />
 
     <TextView
+        android:id="@+id/tvSwitch"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/tvSwitch"
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/switch1"
         android:layout_alignParentStart="true"
-        android:hint="status: on/off" />
+        android:layout_below="@+id/switch1"
+        android:layout_marginTop="202dp"
+        android:hint="status: on/off"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Voltage : "
         android:id="@+id/textView"
-        android:layout_alignTop="@+id/tvVoltage"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="v"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/tvVoltage"
+        android:text="Voltage : "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
         android:id="@+id/tvVoltage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tvSwitch"
         android:layout_below="@+id/tvSwitch"
         android:layout_marginTop="34dp"
-        android:layout_alignEnd="@+id/tvSwitch"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_toEndOf="@+id/textView"
+        android:text="v"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Current:"
         android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/textView" />
+        android:text="Current:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Power:"
         android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/textView2" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="i"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:text="Power:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
         android:id="@+id/tvCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/textView3"
         android:layout_alignEnd="@+id/tvVoltage"
-        android:layout_alignStart="@+id/tvVoltage" />
+        android:layout_alignStart="@+id/tvVoltage"
+        android:text="i"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/tvPower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="p"
-        android:id="@+id/tvPower"
         android:layout_alignBottom="@+id/textView3"
         android:layout_alignEnd="@+id/tvCurrent"
-        android:layout_alignStart="@+id/tvCurrent" />
+        android:layout_alignStart="@+id/tvCurrent"
+        android:text="p"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_above="@+id/tvVoltage"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="46dp"
+        android:background="@drawable/toggle_button"
+        android:checked="false"
+        android:text="New ToggleButton"
+        android:textOff=""
+        android:textOn="" />
 </RelativeLayout>
