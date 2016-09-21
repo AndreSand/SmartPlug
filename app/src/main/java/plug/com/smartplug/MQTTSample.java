@@ -39,12 +39,12 @@ public class MQTTSample {
             mqttClient.setCallback(new MqttCallback() {
                 public void messageArrived(String topic, MqttMessage msg)
                         throws Exception {
-                    System.out.println("Recived:" + topic);
-                    System.out.println("Recived:" + new String(msg.getPayload()));
+                    System.out.println("Received:" + topic);
+                    System.out.println("Received:" + new String(msg.getPayload()));
                 }
 
                 public void deliveryComplete(IMqttDeliveryToken arg0) {
-                    System.out.println("Delivary complete");
+                    System.out.println("Delivery complete");
                 }
 
                 public void connectionLost(Throwable arg0) {
@@ -59,8 +59,8 @@ public class MQTTSample {
             //*****************************************
             //******* Below My values **************
             //*****************************************
-            connOpts.setUserName("tgpgjryu");
-            connOpts.setPassword("IWJuk7yzRq00".toCharArray());
+//            connOpts.setUserName("tgpgjryu");
+//            connOpts.setPassword("IWJuk7yzRq00".toCharArray());
 
 
             //*****************************************
@@ -72,8 +72,8 @@ public class MQTTSample {
             //*****************************************
             //******* Heroku Server values **************
             //*****************************************
-            //connOpts.setUserName("cqskjfmy3");
-            //connOpts.setPassword("8H2lj4mekk0v".toCharArray());
+            connOpts.setUserName("cqskjfmy3");
+            connOpts.setPassword("8H2lj4mekk0v".toCharArray());
 
 
             //

@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
                     myMQTT.sendMessage("{\"command\":\"On\"}");
                 } else {
                     Toast.makeText(MainActivity.this, "Toggle button is Off", Toast.LENGTH_LONG).show();
-                    myMQTT.sendMessage("{\"command\":\"On\"}");
+                    myMQTT.sendMessage("{\"command\":\"Off\"}");
                 }
             }
         });
