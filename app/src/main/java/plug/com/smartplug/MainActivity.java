@@ -91,11 +91,12 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
             public void onClick(View v) {
 
                 if (togglebutton.isChecked()) {
-                    Toast.makeText(MainActivity.this, "Toggle button is on", Toast.LENGTH_LONG).show();
-                    myMQTT.sendMessage("{\"command\":\"On\"}");
+                    Toast.makeText(MainActivity.this, "Toggle button is On", Toast.LENGTH_LONG).show();
+                    //myMQTT.sendMessage("{\"command\":\"On\"}");
+                    myMQTT.sendMessage("{\"command\":\"On\",\"sender\":\"AndroidApp\"}");
                 } else {
                     Toast.makeText(MainActivity.this, "Toggle button is Off", Toast.LENGTH_LONG).show();
-                    myMQTT.sendMessage("{\"command\":\"Off\"}");
+                    myMQTT.sendMessage("{\"command\":\"Off\",\"sender\":\"AndroidApp\"}");
                 }
             }
         });
@@ -240,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         if (jsonObj.has("device_slave")) {
             device_slave = jsonObj.getString("device_slave").isEmpty() ? "isNull" : jsonObj.getString("device_slave");
         } else {
-            deviceStatus = "0";
+            device_slave = "0";
         }
 
         if (jsonObj.has("sender")) {

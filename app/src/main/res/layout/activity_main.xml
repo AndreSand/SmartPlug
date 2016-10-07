@@ -10,7 +10,6 @@
     tools:context="plug.com.smartplug.MainActivity">
 
 
-
     <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
@@ -29,7 +28,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/switch1"
         android:layout_marginTop="202dp"
-        android:hint="status: on/off"
+        android:hint="status: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -95,6 +94,7 @@
         android:text="New ToggleButton"
         android:textOff=""
         android:textOn="" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -109,22 +109,22 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Device: "
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/tvPower" />
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="10dp"
+        android:layout_toStartOf="@+id/tvPower"
+        android:text="Device: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/tvDevice_slave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lamp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignBaseline="@+id/textView9"
         android:layout_alignBottom="@+id/textView9"
         android:layout_alignEnd="@+id/tvPower"
-        android:layout_toEndOf="@+id/textView9" />
+        android:layout_toEndOf="@+id/textView9"
+        android:text="lamp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
