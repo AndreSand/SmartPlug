@@ -27,11 +27,17 @@ tutorial MQTT subscriber -> https://github.com/charany1/MQTT-Subscriber
  */
 
 public class MainActivity extends AppCompatActivity implements MqttCallback {
-    private TextView switchStatus, tvVoltage, tvPower, tvCurrent;
+    private TextView switchStatus, tvVoltage, tvPower, tvCurrent, tvDevice_slave;
     private static final String TAG = "MainActivity";
     private Switch mySwitch;
     private MQTTSample myMQTT = new MQTTSample();
     ToggleButton togglebutton;
+    String deviceStatus;
+    String voltage;
+    String current;
+    String power;
+    String device_slave;
+    String sender;
 
 
     @Override
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         tvVoltage = (TextView) findViewById(R.id.tvVoltage);
         tvPower = (TextView) findViewById(R.id.tvPower);
         tvCurrent = (TextView) findViewById(R.id.tvCurrent);
+        tvDevice_slave = (TextView) findViewById(R.id.tvDevice_slave);
         togglebutton = (ToggleButton) findViewById(R.id.toggleButton1);
 
         //mySwitch.setChecked(true);
@@ -168,7 +175,6 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
                                 // The subscription could not be performed, maybe the user was not
                                 // authorized to subscribe on the specified topic e.g. using wildcards
                                 Toast.makeText(MainActivity.this, "Couldn't subscribe to: " + topic, Toast.LENGTH_SHORT).show();
-
                             }
                         });
                     } catch (MqttException e) {
@@ -201,19 +207,55 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         //Message will be below, we will need to parse the Json response for each field.
-        // {"deviceStatus":"On","voltage":"22","current":"1.3","power":"3"}
+        // {"deviceStatus":"On","voltage":"22","current":"1.3","power":"3","device_slave":"printer"}
         String JsonResponse = message.toString();
-        JSONObject obj = new JSONObject(JsonResponse);
-
-        System.out.println(obj.getString("voltage"));
+        JSONObject jsonObj = new JSONObject(JsonResponse);
 
         Toast.makeText(MainActivity.this, "Topic: " + topic + "\nMessage: " + message, Toast.LENGTH_LONG).show();
-        tvVoltage.setText(obj.getString("voltage") + " V");
-        tvCurrent.setText(obj.getString("current") + " A");
-        tvPower.setText(obj.getString("power") + " W");
+
+        if (jsonObj.has("deviceStatus")) {
+            deviceStatus = jsonObj.getString("deviceStatus").isEmpty() ? "isNull" : jsonObj.getString("deviceStatus");
+        } else {
+            deviceStatus = "";
+        }
+
+        if (jsonObj.has("voltage")) {
+            voltage = jsonObj.getString("voltage").isEmpty() ? "isNull" : jsonObj.getString("voltage");
+        } else {
+            voltage = "0";
+        }
+
+        if (jsonObj.has("current")) {
+            current = jsonObj.getString("current").isEmpty() ? "isNull" : jsonObj.getString("current");
+        } else {
+            current = "0";
+        }
+
+        if (jsonObj.has("power")) {
+            power = jsonObj.getString("power").isEmpty() ? "isNull" : jsonObj.getString("power");
+        } else {
+            power = "0";
+        }
+
+        if (jsonObj.has("device_slave")) {
+            device_slave = jsonObj.getString("device_slave").isEmpty() ? "isNull" : jsonObj.getString("device_slave");
+        } else {
+            deviceStatus = "0";
+        }
+
+        if (jsonObj.has("sender")) {
+            sender = jsonObj.getString("sender").isEmpty() ? "isNull" : jsonObj.getString("sender");
+        } else {
+            sender = "";
+        }
+//
+        tvVoltage.setText(voltage + " V");
+        tvCurrent.setText(current + " A");
+        tvPower.setText(power + " W");
+        tvDevice_slave.setText(device_slave + " " + sender);
 
         //Update UI depending on device_status On/Off
-        String switchStatusUpdate = obj.getString("deviceStatus");
+        String switchStatusUpdate = deviceStatus;
         if (switchStatusUpdate.equals("On")) {
             togglebutton.setChecked(true);
             //mySwitch.setChecked(true);

@@ -117,7 +117,7 @@
         android:layout_toStartOf="@+id/tvPower" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tvDevice_slave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="lamp"
