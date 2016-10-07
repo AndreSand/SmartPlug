@@ -12,10 +12,10 @@ SmartPlug Project
 2. App sends below messages to turn on/off appliance
 
     Send On command to device:
-`myMQTT.sendMessage("{\"command\":\"On\"}");`
+`"{\"command\":\"On\",\"sender\":\"AndroidApp\"}"`
 
     Send Off command to device:
-`myMQTT.sendMessage("{\"command\":\"Off\"}");`
+`"{\"command\":\"Off\",\"sender\":\"AndroidApp\"}"`
 
 3. Device parses message and turns on/off appliance
 
