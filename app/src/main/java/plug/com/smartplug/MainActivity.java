@@ -214,6 +214,13 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 
         Toast.makeText(MainActivity.this, "Topic: " + topic + "\nMessage: " + message, Toast.LENGTH_LONG).show();
 
+        /*
+         TODO:
+         Below code logic can be reduce to fewer lines, I think as it is; it's easier for others to follow :)
+         Since device_slave comes from server, from logic below it will make all the values to 0, to solve this we need
+         to use SharedPreferences to store the last know values for voltage, current and power (data persistence)
+         */
+
         if (jsonObj.has("deviceStatus")) {
             deviceStatus = jsonObj.getString("deviceStatus").isEmpty() ? "isNull" : jsonObj.getString("deviceStatus");
         } else {
@@ -241,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         if (jsonObj.has("device_slave")) {
             device_slave = jsonObj.getString("device_slave").isEmpty() ? "isNull" : jsonObj.getString("device_slave");
         } else {
-            device_slave = "0";
+            device_slave = "";
         }
 
         if (jsonObj.has("sender")) {
@@ -253,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         tvVoltage.setText(voltage + " V");
         tvCurrent.setText(current + " A");
         tvPower.setText(power + " W");
-        tvDevice_slave.setText(device_slave + " " + sender);
+        tvDevice_slave.setText(device_slave + ",  sender:" + sender);
 
         //Update UI depending on device_status On/Off
         String switchStatusUpdate = deviceStatus;
@@ -274,14 +281,14 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 
     }
 
-    //TODO: (Issue) After some time the app stops the subscription and is not able to receive any message.
-    //Maybe try to find a way to reconnect every X mins....
-    public void restartActivity() {
-        Intent mIntent = getIntent();
-        finish();
-        startActivity(mIntent);
-        //Log.d("door",message.toString());
-    }
+//    //TODO: (Issue) After some time the app stops the subscription and is not able to receive any message.
+//    //Maybe try to find a way to reconnect every X mins....
+//    public void restartActivity() {
+//        Intent mIntent = getIntent();
+//        finish();
+//        startActivity(mIntent);
+//        //Log.d("door",message.toString());
+//    }
 
 
 }
