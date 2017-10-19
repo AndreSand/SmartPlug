@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        addition(4,3);
+        multiplication(3,4);
+
         switchStatus = (TextView) findViewById(R.id.tvSwitch);
         //mySwitch = (Switch) findViewById(R.id.switch1);
         tvVoltage = (TextView) findViewById(R.id.tvVoltage);
@@ -281,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 
     }
 
-//    //TODO: (Issue) After some time the app stops the subscription and is not able to receive any message.
+    //    //TODO: (Issue) After some time the app stops the subscription and is not able to receive any message.
 //    //Maybe try to find a way to reconnect every X mins....
 //    public void restartActivity() {
 //        Intent mIntent = getIntent();
@@ -289,6 +292,13 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 //        startActivity(mIntent);
 //        //Log.d("door",message.toString());
 //    }
+    public static int addition(int a, int b) {
+        return a + b;
+    }
+
+    public static int multiplication(int a, int b) {
+        return a * b;
+    }
 
 
 }
