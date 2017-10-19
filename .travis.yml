@@ -1,6 +1,6 @@
 # run Unit test
 language: android
-    android:
+android:
         components:
             - tools
             - platform-tools
