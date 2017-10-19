@@ -1,12 +1,6 @@
 # run Unit test
 language: android
-android:
-    components:
-        - tools
-        - platform-tools
-        - tools
-        - build-tools-23.0.3
-        - android-23
+
 
 script:
    - ./gradlew jacocoTestReport
@@ -14,3 +8,11 @@ script:
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
+
+#    android:
+#        components:
+#            - tools
+#            - platform-tools
+#            - tools
+#            - build-tools-23.0.3
+#            - android-23
