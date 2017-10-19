@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
         setContentView(R.layout.activity_main);
 
         addition(4,3);
+        sub(4,3);
         multiplication(3,4);
 
         switchStatus = (TextView) findViewById(R.id.tvSwitch);
@@ -292,8 +293,13 @@ public class MainActivity extends AppCompatActivity implements MqttCallback {
 //        startActivity(mIntent);
 //        //Log.d("door",message.toString());
 //    }
+
     public static int addition(int a, int b) {
         return a + b;
+    }
+
+    public static int sub(int a, int b) {
+        return a - b;
     }
 
     public static int multiplication(int a, int b) {

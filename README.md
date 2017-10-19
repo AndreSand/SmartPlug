@@ -6,6 +6,11 @@ SmartPlug Project
 >SmartPlug device design and develop by [hardware team](https://github.com/hsrascon/SmartPlug/blob/master/Firmware/WL1/ArduinoCode/SmartPlugWL1_V04.ino). Todo add image of device.
 
 
+
+[![codecov](https://codecov.io/gh/AndreSand/SmartPlug/branch/master/graph/badge.svg)](https://codecov.io/gh/AndreSand/SmartPlug)
+
+
+
 ###Device subscribes to Topic (app driven)
 
 1. Device subscribes to topic: "**SmartPlug**"
@@ -68,3 +73,5 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/)
 [off button](https://pixabay.com/en/switch-button-power-off-circle-29869/)
 [on button](https://pixabay.com/en/button-toggle-on-off-switch-green-29286/)
 
+[codecov](https://codecov.io/gh/AndreSand/SmartPlug)
+[codecov badge](Badges are found at https://codecov.io/gh/owner/repo/settings/badge)

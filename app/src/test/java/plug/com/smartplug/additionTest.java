@@ -23,4 +23,12 @@ public class additionTest {
         int actual = MainActivity.multiplication(2, 2);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void subTest() throws Exception {
+        //Fail this on purpose
+        int expected = 3;
+        int actual = MainActivity.sub(5, 2);
+        assertEquals(expected, actual);
+    }
 }
